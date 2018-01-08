@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1079766863335",
+    "firebase_url": "https://fir-ycombinator.firebaseio.com",
+    "project_id": "fir-ycombinator",
+    "storage_bucket": "fir-ycombinator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079766863335:android:f8f69983223d1eee",
+        "android_client_info": {
+          "package_name": "com.example.anton.techy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079766863335-krbt60tamqcmp9tkdr3n4ac71u69vh8o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.anton.techy",
+            "certificate_hash": "a2414139f0491424bdf0bce40794cc7fe52f4d50"
+          }
+        },
+        {
+          "client_id": "1079766863335-0k016bh9j0s2sq3fdqbi2c0p6h82q2d5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdE7UyxVLkn-rYdSxKPCkMvbHrO47AVqo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079766863335-0k016bh9j0s2sq3fdqbi2c0p6h82q2d5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
