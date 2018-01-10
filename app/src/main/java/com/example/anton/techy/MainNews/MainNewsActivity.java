@@ -58,8 +58,8 @@ public class MainNewsActivity extends AppCompatActivity {
 
     private void initViews(){
         recyclerView = (android.support.v7.widget.RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(false);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        init();
         init2();
         init3();

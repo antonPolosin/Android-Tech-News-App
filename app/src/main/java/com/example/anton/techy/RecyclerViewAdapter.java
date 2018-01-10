@@ -57,8 +57,8 @@ public class RecyclerViewAdapter extends android.support.v7.widget.RecyclerView.
 
     @Override
     public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_layout_tech, parent, false);
+        View v = LayoutInflater.from(mContext)
+                .inflate(R.layout.card_layout_tech, null);
         return new ViewHolder(v);
     }
 
