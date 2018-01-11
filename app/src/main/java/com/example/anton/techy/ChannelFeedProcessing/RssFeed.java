@@ -15,16 +15,25 @@ public class RssFeed implements Serializable{
 
     @Element(name = "channel")
     private Channel mChannel;
+    private String iconImage;
+
+    public RssFeed() {
+    }
 
     public Channel getmChannel() {
         return mChannel;
     }
 
-    public RssFeed() {
+    public String getIconImage() {
+        return iconImage;
     }
 
     public RssFeed(Channel mChannel) {
         this.mChannel = mChannel;
+    }
+
+    public void setIconImage(String iconImage) {
+        this.iconImage = iconImage;
     }
 
     @Override

@@ -58,7 +58,7 @@ public class RecyclerViewAdapter extends android.support.v7.widget.RecyclerView.
     @Override
     public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext)
-                .inflate(R.layout.card_layout_tech, null);
+                .inflate(R.layout.card_layout_image, null);
         return new ViewHolder(v);
     }
 
@@ -75,9 +75,11 @@ public class RecyclerViewAdapter extends android.support.v7.widget.RecyclerView.
 
         final News newsItem = newsItems.get(position);
         String imgUrl = newsItem.getNewsImage();
+        String iconUrl = newsItem.getIconNews();
 //        try {
 //            Date date = new Date(sdf.parse(newsItem.getUpdated()));
-            holder.date_updated.setText(p.format(new Date(newsItem.getUpdated())));
+//            holder.date_updated.setText(p.format(new Date(newsItem.getUpdated())));
+            holder.date_updated.setText(newsItem.getUpdated());
             holder.title.setText(newsItem.getTitle());
 //        }catch(Exception j){
 //            j.printStackTrace();
@@ -136,6 +138,31 @@ public class RecyclerViewAdapter extends android.support.v7.widget.RecyclerView.
 
             });
 
+        //download and display image from url
+        imageLoader.displayImage(iconUrl, holder.iconImage, options, new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String imageUri, View view) {
+                holder.mProgressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                holder.mProgressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                holder.mProgressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onLoadingCancelled(String imageUri, View view) {
+                holder.mProgressBar.setVisibility(View.GONE);
+            }
+
+        });
+
+
 
     }
 
@@ -145,6 +172,7 @@ public class RecyclerViewAdapter extends android.support.v7.widget.RecyclerView.
         TextView date_updated;
         ProgressBar mProgressBar;
         ImageView newsImage;
+        ImageView iconImage;
         public RelativeLayout mRelativeLayout;
 
         public ViewHolder(View itemView) {
@@ -153,6 +181,7 @@ public class RecyclerViewAdapter extends android.support.v7.widget.RecyclerView.
             title = (TextView) itemView.findViewById(R.id.cardTitle);
             date_updated = (TextView) itemView.findViewById(R.id.cardUpdated);
             newsImage = (ImageView) itemView.findViewById(R.id.cardImage);
+            iconImage = (ImageView) itemView.findViewById(R.id.cardAuthor);
             mProgressBar = (ProgressBar) itemView.findViewById(R.id.cardProgressDialog);
             mRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.relative_layout);
         }

@@ -23,6 +23,7 @@ public class News {
     private String updated;
     private String newsImage;
     private String newsURL;
+    private String iconImage;
 
     public News() {
 
@@ -34,11 +35,19 @@ public class News {
         this.newsURL = newsURL;
     }
 
-    public News(String title, String updated, String newsURL, String newsImage) {
+    public News(String title, String updated, String newsImage, String newsURL) {
         this.title = title;
         this.updated = updated;
         this.newsImage = newsImage;
         this.newsURL = newsURL;
+    }
+
+    public News(String title, String updated, String newsURL, String newsImage, String iconImage) {
+        this.title = title;
+        this.updated = updated;
+        this.newsImage = newsImage;
+        this.newsURL = newsURL;
+        this.iconImage = iconImage;
 
     }
 
@@ -75,4 +84,11 @@ public class News {
         this.newsImage = newsImage;
     }
 
+    public String getIconNews() {
+        return iconImage;
+    }
+
+    public void setIconNews(String iconImage) {
+        this.iconImage = iconImage;
+    }
 }

@@ -21,6 +21,7 @@ public class Item implements Serializable{
     private String description;
 
 
+
     public Item(String title, String link, String pubDate) {
         this.title = title;
         this.link = link;
@@ -35,6 +36,7 @@ public class Item implements Serializable{
         this.pubDate = pubDate;
         this.description = description;
     }
+
 
     public Item() {
     }
@@ -54,6 +56,8 @@ public class Item implements Serializable{
     public String getDescription() {
         return description;
     }
+
+
 
     public void setTitle(String title) {
         this.title = title;
