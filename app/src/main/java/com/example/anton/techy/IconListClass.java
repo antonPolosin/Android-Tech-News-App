@@ -1,4 +1,4 @@
-package com.example.anton.techy.YCombinatorFirebase;
+package com.example.anton.techy;
 
 import com.example.anton.techy.R;
 
@@ -8,11 +8,17 @@ import com.example.anton.techy.R;
 
 //list of static paths to the icons in drawable folder
 
-public class IconImageList {
+public class IconListClass {
 
     private static final String TECH_CRUNCH_ICON = "drawable://" + R.drawable.techcrunch_new;
 
+    private static final String HACKER_NEWS_ICON = "drawable://" + R.drawable.hackernews;
+
     public static String getTechCrunchIcon() {
         return TECH_CRUNCH_ICON;
+    }
+
+    public static String getHackerNewsIcon() {
+        return HACKER_NEWS_ICON;
     }
 }

@@ -14,11 +14,11 @@ import com.example.anton.techy.FeedFeedProcessing.FeedFeed;
 import com.example.anton.techy.FeedFeedProcessing.XmlExtraction;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
 import com.example.anton.techy.InterfaceAPI.FeedFeedAPI;
-import com.example.anton.techy.News;
+import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
-import com.example.anton.techy.RecyclerViewAdapter;
+import com.example.anton.techy.RecyclerViewAdapterImage;
 import com.example.anton.techy.URLS;
-import com.example.anton.techy.YCombinatorFirebase.IconImageList;
+import com.example.anton.techy.IconListClass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class MainNewsActivity extends AppCompatActivity {
 
     private android.support.v7.widget.RecyclerView recyclerView;
     private android.support.v7.widget.RecyclerView.Adapter adapter;
-    private ArrayList<News> news = new ArrayList<News>();
+    private ArrayList<NewsClass> news = new ArrayList<NewsClass>();
     private String iconImage;
 
     URLS vergeUrl = new URLS("https://www.theverge.com/", "https://www.theverge.com/rss/index.xml");
@@ -95,7 +95,7 @@ public class MainNewsActivity extends AppCompatActivity {
                     List<String> postContent = extractVerge.start();
 
                     //adding news to the arrayList
-                    news.add(new News(
+                    news.add(new NewsClass(
                             entries.get(i).getTitle(),
                             entries.get(i).getUpdated(),
                             entries.get(i).getId(),
@@ -105,7 +105,7 @@ public class MainNewsActivity extends AppCompatActivity {
                     ));
 
                 }
-                adapter = new RecyclerViewAdapter(news, getApplicationContext());
+                adapter = new RecyclerViewAdapterImage(news, getApplicationContext());
                 recyclerView.setAdapter(adapter);
 
             }
@@ -150,7 +150,7 @@ public class MainNewsActivity extends AppCompatActivity {
 //                    int lastPosition = postContent.size() - 1;
 //
 //                    try {
-//                        news.add(new News(
+//                        news.add(new NewsClass(
 //                                mItems.get(i).getTitle(),
 //                                mItems.get(i).getPubDate(),
 //                                mItems.get(i).getLink(),
@@ -161,7 +161,7 @@ public class MainNewsActivity extends AppCompatActivity {
 //                    }
 //
 //                }
-//                adapter = new RecyclerViewAdapter(news, getApplicationContext());
+//                adapter = new RecyclerViewAdapterImage(news, getApplicationContext());
 //                recyclerView.setAdapter(adapter);
 //            }
 //
@@ -201,16 +201,16 @@ public class MainNewsActivity extends AppCompatActivity {
                 for (int i = 0; i < mItems.size(); i++) {
                     XmlExtraction extractVerge = new XmlExtraction(mItems.get(i).getDescription(), "src=");
                     List<String> postContent = extractVerge.start();
-                    news.add(new News(
+                    news.add(new NewsClass(
                             mItems.get(i).getTitle(),
                             mItems.get(i).getPubDate(),
                             mItems.get(i).getLink(),
                             postContent.get(0),
-                            IconImageList.getTechCrunchIcon()
+                            IconListClass.getTechCrunchIcon()
                     ));
 
                 }
-                adapter = new RecyclerViewAdapter(news, getApplicationContext());
+                adapter = new RecyclerViewAdapterImage(news, getApplicationContext());
                 recyclerView.setAdapter(adapter);
             }
 

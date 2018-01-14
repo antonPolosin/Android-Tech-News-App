@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.example.anton.techy.ChannelFeedProcessing.Item;
 import com.example.anton.techy.ChannelFeedProcessing.RssFeed;
 import com.example.anton.techy.InterfaceAPI.FeedGitXivAPI;
-import com.example.anton.techy.News;
+import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
 
 import java.util.ArrayList;
@@ -66,9 +66,9 @@ public class GitXivActivity extends AppCompatActivity {
                 Log.d(TAG, "onResponse: Server Response: " + response.toString());
 //
 //                //initialise arraylist to add news to the class
-                ArrayList<News> news = new ArrayList<News>();
+                ArrayList<NewsClass> news = new ArrayList<NewsClass>();
                 for (int i = 0; i < mItems.size(); i++) {
-                    news.add(new News(
+                    news.add(new NewsClass(
                             mItems.get(i).getTitle(),
                             mItems.get(i).getPubDate(),
                             mItems.get(i).getLink()

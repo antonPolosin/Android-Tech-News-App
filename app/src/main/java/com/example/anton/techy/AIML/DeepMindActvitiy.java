@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.example.anton.techy.ChannelFeedProcessing.Item;
 import com.example.anton.techy.ChannelFeedProcessing.RssFeed;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
-import com.example.anton.techy.News;
+import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
 import com.example.anton.techy.URLS;
 
@@ -64,11 +64,11 @@ public class DeepMindActvitiy extends AppCompatActivity{
                 Log.d(TAG, "onResponse: Server Response: " + response.toString());
 
                 //initialise arraylist to add news to the class
-                ArrayList<News> news = new ArrayList<News>();
+                ArrayList<NewsClass> news = new ArrayList<NewsClass>();
                 for (int i = 0; i < mItems.size(); i++) {
 //                    XmlExtraction extractVerge = new XmlExtraction(mItems.get(i).getContent(), "img src=");
 //                    List<String> postContent = extractVerge.start();
-                    news.add(new News(
+                    news.add(new NewsClass(
                             mItems.get(i).getTitle(),
                             mItems.get(i).getPubDate(),
                             mItems.get(i).getLink()

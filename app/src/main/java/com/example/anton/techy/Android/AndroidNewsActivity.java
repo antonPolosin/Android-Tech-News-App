@@ -10,9 +10,9 @@ import android.widget.Toast;
 import com.example.anton.techy.ChannelFeedProcessing.Item;
 import com.example.anton.techy.ChannelFeedProcessing.RssFeed;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
-import com.example.anton.techy.News;
+import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
-import com.example.anton.techy.RecyclerViewAdapter;
+import com.example.anton.techy.RecyclerViewAdapterImage;
 import com.example.anton.techy.URLS;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class AndroidNewsActivity extends AppCompatActivity{
 
     private android.support.v7.widget.RecyclerView recyclerView;
     private android.support.v7.widget.RecyclerView.Adapter adapter;
-    ArrayList<News> news = new ArrayList<News>();
+    ArrayList<NewsClass> news = new ArrayList<NewsClass>();
 
     URLS url_1 = new URLS("https://www.androidauthority.com/", "https://www.androidauthority.com/feed/");
     URLS url_2 = new URLS("http://www.techmanik.com/", "http://feeds.feedburner.com/Techmanik/");
@@ -83,7 +83,7 @@ public class AndroidNewsActivity extends AppCompatActivity{
                 for (int i = 0; i < mItems.size(); i++) {
 //                    XmlExtraction extractVerge = new XmlExtraction(mItems.get(i).getContent(), "img src=");
 //                    List<String> postContent = extractVerge.start();
-                    news.add(new News(
+                    news.add(new NewsClass(
                             mItems.get(i).getTitle(),
                             mItems.get(i).getPubDate(),
                             mItems.get(i).getLink()
@@ -91,7 +91,7 @@ public class AndroidNewsActivity extends AppCompatActivity{
                     ));
 
                 }
-                adapter = new RecyclerViewAdapter(news, getApplicationContext());
+                adapter = new RecyclerViewAdapterImage(news, getApplicationContext());
                 recyclerView.setAdapter(adapter);
 
 
@@ -131,7 +131,7 @@ public class AndroidNewsActivity extends AppCompatActivity{
                 for (int i = 0; i < mItems.size(); i++) {
 //                    XmlExtraction extractVerge = new XmlExtraction(mItems.get(i).getContent(), "img src=");
 //                    List<String> postContent = extractVerge.start();
-                    news.add(new News(
+                    news.add(new NewsClass(
                             mItems.get(i).getTitle(),
                             mItems.get(i).getPubDate(),
                             mItems.get(i).getLink()
@@ -139,7 +139,7 @@ public class AndroidNewsActivity extends AppCompatActivity{
                     ));
 
                 }
-                adapter = new RecyclerViewAdapter(news, getApplicationContext());
+                adapter = new RecyclerViewAdapterImage(news, getApplicationContext());
                 recyclerView.setAdapter(adapter);
 
 

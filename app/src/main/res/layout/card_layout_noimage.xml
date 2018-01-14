@@ -17,60 +17,58 @@
         app:contentPaddingRight="16dp">
 
         <RelativeLayout
-            android:id="@+id/relative_layout"
+            android:id="@+id/relative_layout_no_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <TextView
                 android:id="@+id/cardImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_margin="5dp"
-                android:scaleType="centerCrop" />
+                android:layout_margin="5dp"/>
 
             <RelativeLayout
                 android:id="@+id/relLayoutText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/cardImage">
+                android:layout_marginLeft="5dp">
 
-                <TextView
-                    android:id="@+id/cardTitle"
-                    android:fontFamily="sans-serif-black"
-                    android:textColor="@color/headlineColor"
-                    android:textSize="15sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"
-                    android:text="Card Title" />
+            <TextView
+                android:id="@+id/cardTitleNoImage"
+                android:fontFamily="sans-serif-black"
+                android:textColor="@color/headlineColor"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:text="Card Title" />
 
-                <ImageView
-                    android:id="@+id/cardAuthor"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:fontFamily="sans-serif"
-                    android:layout_below="@+id/cardTitle"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center_vertical" />
-
+            <ImageView
+                android:id="@+id/cardAuthorNoImage"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:fontFamily="sans-serif"
+                android:layout_below="@+id/cardTitleNoImage"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical" />
             </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cardUpdated"
+                android:id="@+id/cardUpdatedNoImage"
                 android:paddingBottom="5dp"
                 android:layout_alignRight="@id/relLayoutText"
                 android:layout_alignBottom="@id/cardImage"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:text="updated"
-                android:textSize="10sp" />
+                android:textSize="10sp" /> />
 
             <ProgressBar
-                android:id="@+id/cardProgressDialog"
+                android:id="@+id/cardProgressDialogNoImage"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerHorizontal="true"

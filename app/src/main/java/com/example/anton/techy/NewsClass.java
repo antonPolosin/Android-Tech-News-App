@@ -11,7 +11,7 @@ import java.util.Locale;
  * Created by anton on 9/12/17.
  */
 
-public class News {
+public class NewsClass {
 
     PrettyTime p = new PrettyTime(Locale.getDefault());
 
@@ -25,24 +25,24 @@ public class News {
     private String newsURL;
     private String iconImage;
 
-    public News() {
+    public NewsClass() {
 
     }
 
-    public News(String title, String updated, String newsURL) {
+    public NewsClass(String title, String updated, String newsURL) {
         this.title = title;
         this.updated = updated;
         this.newsURL = newsURL;
     }
 
-    public News(String title, String updated, String newsImage, String newsURL) {
+    public NewsClass(String title, String updated, String newsImage, String newsURL) {
         this.title = title;
         this.updated = updated;
         this.newsImage = newsImage;
         this.newsURL = newsURL;
     }
 
-    public News(String title, String updated, String newsURL, String newsImage, String iconImage) {
+    public NewsClass(String title, String updated, String newsURL, String newsImage, String iconImage) {
         this.title = title;
         this.updated = updated;
         this.newsImage = newsImage;

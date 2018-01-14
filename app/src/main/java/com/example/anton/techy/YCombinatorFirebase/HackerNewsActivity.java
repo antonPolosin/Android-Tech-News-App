@@ -7,13 +7,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.anton.techy.Android.AndroidNewsActivity;
 import com.example.anton.techy.ChannelFeedProcessing.Item;
 import com.example.anton.techy.ChannelFeedProcessing.RssFeed;
+import com.example.anton.techy.IconListClass;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
-import com.example.anton.techy.News;
+import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
-import com.example.anton.techy.RecyclerViewAdapter;
+import com.example.anton.techy.RecyclerViewAdapterImage;
+import com.example.anton.techy.RecyclerViewAdapterNoImage;
 import com.example.anton.techy.URLS;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class HackerNewsActivity extends AppCompatActivity {
 
     private android.support.v7.widget.RecyclerView recyclerView;
     private android.support.v7.widget.RecyclerView.Adapter adapter;
-    ArrayList<News> news = new ArrayList<News>();
+    ArrayList<NewsClass> news = new ArrayList<NewsClass>();
 
     URLS url_1 = new URLS("https://news.ycombinator.com/news/", "https://news.ycombinator.com/bigrss");
 
@@ -83,15 +84,16 @@ public class HackerNewsActivity extends AppCompatActivity {
                 for (int i = 0; i < mItems.size(); i++) {
 //                    XmlExtraction extractVerge = new XmlExtraction(mItems.get(i).getContent(), "img src=");
 //                    List<String> postContent = extractVerge.start();
-                    news.add(new News(
+                    news.add(new NewsClass(
                             mItems.get(i).getTitle(),
                             mItems.get(i).getPubDate(),
-                            mItems.get(i).getLink()
-
+                            mItems.get(i).getLink(),
+                            null,
+                            IconListClass.getHackerNewsIcon()
                     ));
 
                 }
-                adapter = new RecyclerViewAdapter(news, getApplicationContext());
+                adapter = new RecyclerViewAdapterNoImage    (news, getApplicationContext());
                 recyclerView.setAdapter(adapter);
 
 
