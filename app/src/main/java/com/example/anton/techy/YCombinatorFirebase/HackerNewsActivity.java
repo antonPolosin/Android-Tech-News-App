@@ -3,6 +3,7 @@ package com.example.anton.techy.YCombinatorFirebase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.widget.Toast;
