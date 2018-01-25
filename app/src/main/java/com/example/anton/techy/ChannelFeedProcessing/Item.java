@@ -17,7 +17,7 @@ public class Item implements Serializable{
     private String link;
     @Element(name = "pubDate")
     private String pubDate;
-    @Element(name = "description")
+    @Element(name = "description", required = false)
     private String description;
 
 

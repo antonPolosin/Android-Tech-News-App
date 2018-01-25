@@ -12,7 +12,7 @@ import com.example.anton.techy.FeedFeedProcessing.XmlExtraction;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
 import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
-import com.example.anton.techy.URLS;
+import com.example.anton.techy.UtilsURL.URLS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,7 @@ public class IphoneBacksActivity extends AppCompatActivity{
 
         FeedChannelAPI feed = retrofit.create(FeedChannelAPI.class);
 
-        Call<RssFeed> call = feed.getFeed(usedUrls.getUrl_path());
+        Call<RssFeed> call = feed.getFeed(usedUrls.getRss_url());
 
         //starting callbacks
         call.enqueue(new Callback<RssFeed>() {

@@ -23,6 +23,9 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import org.ocpsoft.prettytime.PrettyTime;
 
 import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -64,10 +67,9 @@ public class RecyclerViewAdapterNoImage extends android.support.v7.widget.Recycl
 
         final NewsClass newsItem = newsItems.get(position);
         String iconUrl = newsItem.getIconNews();
-//        try {
-//            Date date = new Date(sdf.parse(newsItem.getUpdated()));
-//            holder.date_updated.setText(p.format(new Date(newsItem.getUpdated())));
-        holder.date_updated.setText(newsItem.getUpdated());
+
+        holder.date_updated.setText(p.format(new Date(newsItem.getUpdated())));
+
         holder.title.setText(newsItem.getTitle());
 //        }catch(Exception j){
 //            j.printStackTrace();

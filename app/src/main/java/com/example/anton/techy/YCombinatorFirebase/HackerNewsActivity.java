@@ -3,7 +3,6 @@ package com.example.anton.techy.YCombinatorFirebase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,9 +13,8 @@ import com.example.anton.techy.IconListClass;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
 import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
-import com.example.anton.techy.RecyclerViewAdapterImage;
 import com.example.anton.techy.RecyclerViewAdapterNoImage;
-import com.example.anton.techy.URLS;
+import com.example.anton.techy.UtilsURL.URLS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +67,7 @@ public class HackerNewsActivity extends AppCompatActivity {
 
         FeedChannelAPI feed = retrofit.create(FeedChannelAPI.class);
 
-        Call<RssFeed> call = feed.getFeed(url_1.getUrl_path());
+        Call<RssFeed> call = feed.getFeed(url_1.getRss_url());
 
         //starting callbacks
         call.enqueue(new Callback<RssFeed>() {
@@ -90,7 +88,7 @@ public class HackerNewsActivity extends AppCompatActivity {
                             mItems.get(i).getPubDate(),
                             mItems.get(i).getLink(),
                             null,
-                            IconListClass.getHackerNewsIcon()
+                            IconListClass.getIcons().get(1)
                     ));
 
                 }

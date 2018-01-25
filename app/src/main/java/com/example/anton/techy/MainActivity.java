@@ -1,25 +1,22 @@
 package com.example.anton.techy;
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.example.anton.techy.MainNews.MainNewsActivity;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends android.support.v4.app.Fragment {
 
     private static final String TAG = "Grid";
 
@@ -27,19 +24,44 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerViewAdapterGrid adapter;
     private List<GridFrontCoverClass> gridCoverList;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public MainActivity() {
+    }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
+//
+//        Log.d(TAG, "starting");
+//        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+//
+//        gridCoverList = new ArrayList<>();
+//        adapter = new RecyclerViewAdapterGrid(this, gridCoverList);
+//
+//        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+//        recyclerView.setLayoutManager(mLayoutManager);
+//        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        recyclerView.setAdapter(adapter);
+//
+//        displayGridCover();
+
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_main, container, false);
 
         Log.d(TAG, "starting");
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
 
         gridCoverList = new ArrayList<>();
-        adapter = new RecyclerViewAdapterGrid(this, gridCoverList);
+        adapter = new RecyclerViewAdapterGrid(getActivity(), gridCoverList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -47,45 +69,34 @@ public class MainActivity extends AppCompatActivity {
 
         displayGridCover();
 
-
-
+        return rootView;
     }
 
     private void displayGridCover(){
 
-        String[] covers = new String[]{
-                IconListClass.getAiCover(),
-                IconListClass.getAndroidCover(),
-                IconListClass.getAppleCover(),
-                IconListClass.getGamingCover(),
-                IconListClass.getLinuxCover(),
-                IconListClass.getMicrosoftCover(),
-                IconListClass.getRedditCover(),
-                IconListClass.getWebsiteDesignCover()
-        };
 
-        GridFrontCoverClass gridCover = new GridFrontCoverClass("AI & ML", covers[0]);
+        GridFrontCoverClass gridCover = new GridFrontCoverClass("AI & ML", IconListClass.getIcons().get(0));
         gridCoverList.add(gridCover);
 
-        gridCover = new GridFrontCoverClass("Android", covers[1]);
+        gridCover = new GridFrontCoverClass("Android", IconListClass.getIcons().get(1));
         gridCoverList.add(gridCover);
 
-        gridCover = new GridFrontCoverClass("IOS", covers[2]);
+        gridCover = new GridFrontCoverClass("IOS", IconListClass.getIcons().get(2));
         gridCoverList.add(gridCover);
 
-        gridCover = new GridFrontCoverClass("Gaming", covers[3]);
+        gridCover = new GridFrontCoverClass("Gaming", IconListClass.getIcons().get(3));
         gridCoverList.add(gridCover);
 
-        gridCover = new GridFrontCoverClass("Linux", covers[4]);
+        gridCover = new GridFrontCoverClass("Linux", IconListClass.getIcons().get(4));
         gridCoverList.add(gridCover);
 
-        gridCover = new GridFrontCoverClass("Microsoft", covers[5]);
+        gridCover = new GridFrontCoverClass("Microsoft", IconListClass.getIcons().get(5));
         gridCoverList.add(gridCover);
 
-        gridCover = new GridFrontCoverClass("Reddit", covers[6]);
+        gridCover = new GridFrontCoverClass("Reddit", IconListClass.getIcons().get(6));
         gridCoverList.add(gridCover);
 
-        gridCover = new GridFrontCoverClass("Web Design", covers[7]);
+        gridCover = new GridFrontCoverClass("Web Design", IconListClass.getIcons().get(7));
         gridCoverList.add(gridCover);
 
         adapter.notifyDataSetChanged();

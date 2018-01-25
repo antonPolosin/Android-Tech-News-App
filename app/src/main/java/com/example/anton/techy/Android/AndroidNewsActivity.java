@@ -13,7 +13,7 @@ import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
 import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
 import com.example.anton.techy.RecyclerViewAdapterImage;
-import com.example.anton.techy.URLS;
+import com.example.anton.techy.UtilsURL.URLS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,7 @@ public class AndroidNewsActivity extends AppCompatActivity{
 
         FeedChannelAPI feed = retrofit.create(FeedChannelAPI.class);
 
-        Call<RssFeed> call = feed.getFeed(url_1.getUrl_path());
+        Call<RssFeed> call = feed.getFeed(url_1.getRss_url());
 
         //starting callbacks
         call.enqueue(new Callback<RssFeed>() {
@@ -115,7 +115,7 @@ public class AndroidNewsActivity extends AppCompatActivity{
 
         FeedChannelAPI feed = retrofit.create(FeedChannelAPI.class);
 
-        Call<RssFeed> call = feed.getFeed(url_2.getUrl_path());
+        Call<RssFeed> call = feed.getFeed(url_2.getRss_url());
 
         //starting callbacks
         call.enqueue(new Callback<RssFeed>() {
