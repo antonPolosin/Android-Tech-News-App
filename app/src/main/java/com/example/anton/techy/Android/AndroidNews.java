@@ -9,11 +9,13 @@ import android.widget.Toast;
 
 import com.example.anton.techy.ChannelFeedProcessing.Item;
 import com.example.anton.techy.ChannelFeedProcessing.RssFeed;
+import com.example.anton.techy.IconListClass;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
 import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
 import com.example.anton.techy.RecyclerViewAdapterImage;
-import com.example.anton.techy.UtilsURL.URLS;
+import com.example.anton.techy.RecyclerViewAdapterNoImage;
+import com.example.anton.techy.UtilsURL.UrlsList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
  * Created by anton on 15/12/17.
  */
 
-public class AndroidNewsActivity extends AppCompatActivity{
+public class AndroidNews extends AppCompatActivity{
 
     private static final String TAG = "MainNewsActivity";
 
@@ -36,8 +38,6 @@ public class AndroidNewsActivity extends AppCompatActivity{
     private android.support.v7.widget.RecyclerView.Adapter adapter;
     ArrayList<NewsClass> news = new ArrayList<NewsClass>();
 
-    URLS url_1 = new URLS("https://www.androidauthority.com/", "https://www.androidauthority.com/feed/");
-    URLS url_2 = new URLS("http://www.techmanik.com/", "http://feeds.feedburner.com/Techmanik/");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,21 +53,20 @@ public class AndroidNewsActivity extends AppCompatActivity{
         recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         init();
-        init2();
-    }
 
+    }
 
     private void init(){
         //initialising retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url_1.getBase_url())
+                .baseUrl(UrlsList.getBaseUrlsList().get(2))
                 //converter XML
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
 
         FeedChannelAPI feed = retrofit.create(FeedChannelAPI.class);
 
-        Call<RssFeed> call = feed.getFeed(url_1.getRss_url());
+        Call<RssFeed> call = feed.getFeed(UrlsList.getRssUrlsList().get(2));
 
         //starting callbacks
         call.enqueue(new Callback<RssFeed>() {
@@ -86,12 +85,13 @@ public class AndroidNewsActivity extends AppCompatActivity{
                     news.add(new NewsClass(
                             mItems.get(i).getTitle(),
                             mItems.get(i).getPubDate(),
-                            mItems.get(i).getLink()
-
+                            mItems.get(i).getLink(),
+                            null,
+                            IconListClass.getLOGOS().get(6)
                     ));
 
                 }
-                adapter = new RecyclerViewAdapterImage(news, getApplicationContext());
+                adapter = new RecyclerViewAdapterNoImage(news, getApplicationContext());
                 recyclerView.setAdapter(adapter);
 
 
@@ -100,22 +100,20 @@ public class AndroidNewsActivity extends AppCompatActivity{
             @Override
             public void onFailure(Call<RssFeed> call, Throwable t) {
                 Log.e(TAG, "onFailure: Unable to retrieve RSS: " + t.getMessage());
-                Toast.makeText(AndroidNewsActivity.this, "The error occured", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AndroidNews.this, "The error occured", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
-    private void init2(){
         //initialising retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url_2.getBase_url())
+       retrofit = new Retrofit.Builder()
+                .baseUrl(UrlsList.getBaseUrlsList().get(3))
                 //converter XML
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
 
-        FeedChannelAPI feed = retrofit.create(FeedChannelAPI.class);
+       feed = retrofit.create(FeedChannelAPI.class);
 
-        Call<RssFeed> call = feed.getFeed(url_2.getRss_url());
+        call = feed.getFeed(UrlsList.getRssUrlsList().get(3));
 
         //starting callbacks
         call.enqueue(new Callback<RssFeed>() {
@@ -134,12 +132,14 @@ public class AndroidNewsActivity extends AppCompatActivity{
                     news.add(new NewsClass(
                             mItems.get(i).getTitle(),
                             mItems.get(i).getPubDate(),
-                            mItems.get(i).getLink()
+                            mItems.get(i).getLink(),
+                            null,
+                            IconListClass.getLOGOS().get(7)
 
                     ));
 
                 }
-                adapter = new RecyclerViewAdapterImage(news, getApplicationContext());
+                adapter = new RecyclerViewAdapterNoImage(news, getApplicationContext());
                 recyclerView.setAdapter(adapter);
 
 
@@ -148,7 +148,7 @@ public class AndroidNewsActivity extends AppCompatActivity{
             @Override
             public void onFailure(Call<RssFeed> call, Throwable t) {
                 Log.e(TAG, "onFailure: Unable to retrieve RSS: " + t.getMessage());
-                Toast.makeText(AndroidNewsActivity.this, "The error occured", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AndroidNews.this, "The error occured", Toast.LENGTH_SHORT).show();
             }
         });
     }

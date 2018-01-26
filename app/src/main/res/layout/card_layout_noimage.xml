@@ -44,15 +44,17 @@
                 android:gravity="center_vertical"
                 android:text="Card Title" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/cardAuthorNoImage"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:layout_below="@+id/cardTitleNoImage"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:text="source"
+                android:textSize="10sp"/>
             </RelativeLayout>
 
             <TextView

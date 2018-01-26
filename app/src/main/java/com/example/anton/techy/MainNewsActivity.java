@@ -16,6 +16,7 @@ import com.example.anton.techy.FeedFeedProcessing.XmlExtraction;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
 import com.example.anton.techy.InterfaceAPI.FeedFeedAPI;
 import com.example.anton.techy.UtilsURL.URLS;
+import com.example.anton.techy.UtilsURL.UrlsList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,58 +31,38 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
  * Created by anton on 7/12/17.
  */
 
-public class MainNewsActivity extends android.support.v4.app.Fragment{
+public class MainNewsActivity extends android.support.v4.app.Fragment {
 
     private static final String TAG = "MainNewsActivity";
 
     private android.support.v7.widget.RecyclerView recyclerView;
     private android.support.v7.widget.RecyclerView.Adapter adapter;
-    private ArrayList<NewsClass> news = new ArrayList<NewsClass>();
-    private String iconImage;
-
-    URLS vergeUrl = new URLS("https://www.theverge.com/", "https://www.theverge.com/rss/index.xml");
-
-    URLS arsTechUrl = new URLS("https://arstechnica.com/", "http://feeds.arstechnica.com/arstechnica/index");
-
-    URLS techCrunchUrl = new URLS("https://techcrunch.com/", "http://feeds.feedburner.com/TechCrunch/");
-
-
-//    @Override
-//    public void onCreateView(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        Log.d(TAG, "starting");
-//
-//        initViews();
-//
-//    }
+    private ArrayList<NewsClass> news = new ArrayList();
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_main,container, false);
+        View rootView = inflater.inflate(R.layout.activity_main, container, false);
         recyclerView = (android.support.v7.widget.RecyclerView) rootView.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         init();
-        init3();
-
         return rootView;
     }
 
     private void init() {
         //initialising retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(vergeUrl.getBase_url())
+                .baseUrl(UrlsList.getBaseUrlsList().get(6))
                 //converter XML
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
 
-        final FeedFeedAPI feed = retrofit.create(FeedFeedAPI.class);
+        FeedFeedAPI feed = retrofit.create(FeedFeedAPI.class);
 
-        Call<FeedFeed> call = feed.getFeed(vergeUrl.getRss_url());
+        Call<FeedFeed> call = feed.getFeed(UrlsList.getRssUrlsList().get(6));
 
 
         //starting callbacks
@@ -90,8 +71,6 @@ public class MainNewsActivity extends android.support.v4.app.Fragment{
             public void onResponse(Call<FeedFeed> call, Response<FeedFeed> response) {
                 List<Entry> entries = response.body().getEntries();
                 //getting icon from the header of the rss feed
-                iconImage = response.body().getIcon();
-
                 for (int i = 0; i < entries.size(); i++) {
                     //Extracting image from the verge feed
                     XmlExtraction extractVerge = new XmlExtraction(entries.get(i).getContent(), "img alt=\"\" src=");
@@ -103,7 +82,7 @@ public class MainNewsActivity extends android.support.v4.app.Fragment{
                             entries.get(i).getUpdated(),
                             entries.get(i).getId(),
                             postContent.get(0),
-                            iconImage
+                            IconListClass.getLOGOS().get(1)
 
                     ));
 
@@ -121,77 +100,19 @@ public class MainNewsActivity extends android.support.v4.app.Fragment{
         });
 
 
-    }
-
-//    private void init2() {
-//        //initialising retrofit
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(arsTechUrl.getBase_url())
-//                //converter XML
-//                .addConverterFactory(SimpleXmlConverterFactory.create())
-//                .build();
-//
-//        FeedChannelApiArsTech feed = retrofit.create(FeedChannelApiArsTech.class);
-//        Call<RssFeedArsTech> call = feed.getFeed(arsTechUrl.getRss_url());
-////        Call<RssFeedArsTech> call = feed.getFeed(arsTechUrl.getRss_url());
-//
-//        //starting callbacks
-//        call.enqueue(new Callback<RssFeedArsTech>() {
-//            @Override
-//            public void onResponse(Call<RssFeedArsTech> call, Response<RssFeedArsTech> response) {
-//                Log.d(TAG, "onResponse: feed: " + response.body().toString());
-//
-//                List<ItemArsTech> mItems = response.body().getmChannel().getItems();
-//
-//                Log.d(TAG, "onResponse: Server Response: " + response.toString());
-//
-//                //initialise arraylist to add news to the class
-//                for (int i = 0; i < mItems.size(); i++) {
-//                    XmlExtraction extractVerge = new XmlExtraction(mItems.get(i).getContent(), "<img src=");
-//                    List<String> postContent = extractVerge.start();
-//
-//                    int lastPosition = postContent.size() - 1;
-//
-//                    try {
-//                        news.add(new NewsClass(
-//                                mItems.get(i).getTitle(),
-//                                mItems.get(i).getPubDate(),
-//                                mItems.get(i).getLink(),
-//                                postContent.get(lastPosition)
-//                        ));
-//                    }catch(NullPointerException e){
-//                        e.getMessage();
-//                    }
-//
-//                }
-//                adapter = new RecyclerViewAdapterImage(news, getApplicationContext());
-//                recyclerView.setAdapter(adapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RssFeedArsTech> call, Throwable t) {
-//        Log.e(TAG, "onFailure: Unable to retrieve RSS: " + t.getMessage());
-//        Toast.makeText(MainNewsActivity.this, "The error occured", Toast.LENGTH_SHORT).show();
-//            }
-//
-//
-//    });
-//    }
-
-    private void init3(){
         //initialising retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(techCrunchUrl.getBase_url())
+        retrofit = new Retrofit.Builder()
+                .baseUrl(UrlsList.getBaseUrlsList().get(7))
                 //converter XML
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
 
-        FeedChannelAPI feed = retrofit.create(FeedChannelAPI.class);
+        FeedChannelAPI feed_2 = retrofit.create(FeedChannelAPI.class);
 
-        Call<RssFeed> call = feed.getFeed(techCrunchUrl.getRss_url());
+        Call<RssFeed> call_2 = feed_2.getFeed(UrlsList.getRssUrlsList().get(7));
 
         //starting callbacks
-        call.enqueue(new Callback<RssFeed>() {
+        call_2.enqueue(new Callback<RssFeed>() {
             @Override
             public void onResponse(Call<RssFeed> call, Response<RssFeed> response) {
                 Log.d(TAG, "onResponse: feed: " + response.body().toString());
@@ -209,7 +130,7 @@ public class MainNewsActivity extends android.support.v4.app.Fragment{
                             mItems.get(i).getPubDate(),
                             mItems.get(i).getLink(),
                             postContent.get(0),
-                            IconListClass.getLogos().get(0)
+                            IconListClass.getLOGOS().get(0)
                     ));
 
                 }
@@ -226,5 +147,6 @@ public class MainNewsActivity extends android.support.v4.app.Fragment{
         });
     }
 }
+
 
 

@@ -12,12 +12,18 @@ import java.util.List;
 public class IconListClass {
 
     private static final List<String> LOGOS = new ArrayList<String>(){{
-            add("drawable://" + R.drawable.techcrunch_new);
-            add("drawable://" + R.drawable.hackernews);
-            add("drawable://" + R.drawable.deepmind);
-            add("drawable://" + R.drawable.gitxiv);
+            add("TechCrunch");
+            add("The Verge");
+            add("Hacker News");
+            add("DeepMind");
+            add("GitXiv");
+            add("AppleInsider");
+            add("Android Authority");
+            add("TechManik");
+            add("iPhone Hacks");
 
-        }};
+
+    }};
 
     private static final List<String> ICONS = new ArrayList<String>(){{
             add("drawable://" + R.drawable.ai_images);
@@ -36,7 +42,8 @@ public class IconListClass {
             addAll(ICONS);
     }};
 
-    public static List<String> getLogos() {
+
+    public static List<String> getLOGOS() {
         return LOGOS;
     }
 

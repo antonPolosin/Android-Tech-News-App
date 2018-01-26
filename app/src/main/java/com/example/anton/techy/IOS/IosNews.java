@@ -1,13 +1,10 @@
-package com.example.anton.techy.AIML;
+package com.example.anton.techy.IOS;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.anton.techy.ChannelFeedProcessing.Item;
@@ -15,7 +12,6 @@ import com.example.anton.techy.ChannelFeedProcessing.RssFeed;
 import com.example.anton.techy.FeedFeedProcessing.XmlExtraction;
 import com.example.anton.techy.IconListClass;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
-import com.example.anton.techy.InterfaceAPI.FeedGitXivAPI;
 import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
 import com.example.anton.techy.RecyclerViewAdapterImage;
@@ -32,17 +28,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 /**
- * Created by anton on 12/12/17.
+ * Created by anton on 20/12/17.
  */
-//RSS for feeds for AI/ML news
-public class AiMlNews extends AppCompatActivity {
+
+public class IosNews extends AppCompatActivity {
 
     private static final String TAG = "AiMlNews";
 
     private android.support.v7.widget.RecyclerView recyclerView;
     private android.support.v7.widget.RecyclerView.Adapter adapter;
     private ArrayList<NewsClass> news = new ArrayList<>();
-
+    private static final String LOGO = "drawable://" + R.drawable.image_failed;
 
 
     @Override
@@ -52,27 +48,28 @@ public class AiMlNews extends AppCompatActivity {
         initViews();
     }
 
-    //recycler views setup
+    //setup recycler views
     private void initViews() {
         recyclerView = (android.support.v7.widget.RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         init();
+
     }
 
 
-    //RSS Consuming
     private void init() {
         //initialising retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(UrlsList.getBaseUrlsList().get(0))
+                .baseUrl(UrlsList.getBaseUrlsList().get(4))
                 //converter XML
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
 
         FeedChannelAPI feed = retrofit.create(FeedChannelAPI.class);
 
-        Call<RssFeed> call = feed.getFeed(UrlsList.getRssUrlsList().get(0));
+        Call<RssFeed> call = feed.getFeed(UrlsList.getRssUrlsList().get(4));
+
 
         //starting callbacks
         call.enqueue(new Callback<RssFeed>() {
@@ -85,40 +82,42 @@ public class AiMlNews extends AppCompatActivity {
                 Log.d(TAG, "onResponse: Server Response: " + response.toString());
 
                 //initialise arraylist to add news to the class
+
                 for (int i = 0; i < mItems.size(); i++) {
+                    XmlExtraction extractVerge = new XmlExtraction(mItems.get(i).getDescription(), "img src=");
+                    List<String> postContent = extractVerge.start();
                     news.add(new NewsClass(
                             mItems.get(i).getTitle(),
                             mItems.get(i).getPubDate(),
                             mItems.get(i).getLink(),
-                            null,
-                            IconListClass.getLOGOS().get(3)
+                            postContent.get(0),
+                            IconListClass.getLOGOS().get(5)
+
                     ));
 
                 }
-                adapter = new RecyclerViewAdapterNoImage(news, getApplicationContext());
+                //SET UP LIST VIEW TO CARD LAYOUT
+                adapter = new RecyclerViewAdapterImage(news, getApplicationContext());
                 recyclerView.setAdapter(adapter);
+
             }
 
             @Override
             public void onFailure(Call<RssFeed> call, Throwable t) {
                 Log.e(TAG, "onFailure: Unable to retrieve RSS: " + t.getMessage());
-
+                Toast.makeText(IosNews.this, "The error occured", Toast.LENGTH_SHORT).show();
             }
-
         });
 
-        //initialising retrofit
         retrofit = new Retrofit.Builder()
-                .baseUrl(UrlsList.getBaseUrlsList().get(1))
+                .baseUrl(UrlsList.getBaseUrlsList().get(5))
                 //converter XML
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
 
         feed = retrofit.create(FeedChannelAPI.class);
 
-        call = feed.getFeed(UrlsList.getRssUrlsList().get(1));
-
-        //starting callbacks
+        call = feed.getFeed(UrlsList.getRssUrlsList().get(5));
         call.enqueue(new Callback<RssFeed>() {
             @Override
             public void onResponse(Call<RssFeed> call, Response<RssFeed> response) {
@@ -129,25 +128,30 @@ public class AiMlNews extends AppCompatActivity {
                 Log.d(TAG, "onResponse: Server Response: " + response.toString());
 
                 //initialise arraylist to add news to the class
+
                 for (int i = 0; i < mItems.size(); i++) {
+                    XmlExtraction extractVerge = new XmlExtraction(mItems.get(i).getDescription(), "src=");
+                    List<String> postContent = extractVerge.start();
                     news.add(new NewsClass(
                             mItems.get(i).getTitle(),
                             mItems.get(i).getPubDate(),
                             mItems.get(i).getLink(),
-                            null,
-                            IconListClass.getLOGOS().get(4)
-
+                            postContent.get(0),
+                            IconListClass.getLOGOS().get(8)
                     ));
 
                 }
-                adapter = new RecyclerViewAdapterNoImage(news, getApplicationContext());
+                adapter = new RecyclerViewAdapterImage(news, getApplicationContext());
                 recyclerView.setAdapter(adapter);
+
             }
 
             @Override
             public void onFailure(Call<RssFeed> call, Throwable t) {
                 Log.e(TAG, "onFailure: Unable to retrieve RSS: " + t.getMessage());
+                Toast.makeText(IosNews.this, "The error occured", Toast.LENGTH_SHORT).show();
             }
         });
     }
 }
+

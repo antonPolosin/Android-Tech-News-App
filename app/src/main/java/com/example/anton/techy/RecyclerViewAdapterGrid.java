@@ -12,6 +12,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.anton.techy.AIML.AiMlNews;
+import com.example.anton.techy.Android.AndroidNews;
+import com.example.anton.techy.IOS.IosNews;
 import com.example.anton.techy.YCombinatorFirebase.HackerNewsActivity;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -122,6 +124,12 @@ public class RecyclerViewAdapterGrid extends RecyclerView.Adapter<RecyclerViewAd
                 switch(getAdapterPosition()){
                     case 0:
                         intent = new Intent(mContext, AiMlNews.class);
+                        break;
+                    case 1:
+                        intent = new Intent(mContext, AndroidNews.class);
+                        break;
+                    case 2:
+                        intent = new Intent(mContext, IosNews.class);
                         break;
 
                     default:

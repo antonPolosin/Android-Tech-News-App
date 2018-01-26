@@ -18,8 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AIML.AiMlNews"></activity>
-        <activity android:name = ".YCombinatorFirebase.HackerNewsActivity"></activity>
+        <activity android:name=".AIML.AiMlNews"
+            android:configChanges="orientation|keyboard|screenSize"></activity>
+        <activity android:name=".Android.AndroidNews"
+            android:configChanges="orientation|keyboard|screenSize"></activity>
+        <activity android:name=".IOS.IosNews"
+            android:configChanges="orientation|keyboard|screenSize"></activity>
+        <activity android:name = ".YCombinatorFirebase.HackerNewsActivity"
+            android:configChanges="orientation|keyboard|screenSize"></activity>
+
         <activity android:name=".WebViewActivity"></activity>
     </application>
 

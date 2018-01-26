@@ -2,9 +2,7 @@ package com.example.anton.techy;
 
 import org.ocpsoft.prettytime.PrettyTime;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -23,7 +21,7 @@ public class NewsClass {
     private String updated;
     private String newsImage;
     private String newsURL;
-    private String iconImage;
+    private String source;
 
     public NewsClass() {
 
@@ -47,7 +45,7 @@ public class NewsClass {
         this.updated = updated;
         this.newsImage = newsImage;
         this.newsURL = newsURL;
-        this.iconImage = iconImage;
+        this.source = iconImage;
 
     }
 
@@ -84,11 +82,11 @@ public class NewsClass {
         this.newsImage = newsImage;
     }
 
-    public String getIconNews() {
-        return iconImage;
+    public String getSource() {
+        return source;
     }
 
-    public void setIconNews(String iconImage) {
-        this.iconImage = iconImage;
+    public void setSource(String source) {
+        this.source = source;
     }
 }
