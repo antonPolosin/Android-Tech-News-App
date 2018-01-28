@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.example.anton.techy.AIML.AiMlNews;
 import com.example.anton.techy.Android.AndroidNews;
 import com.example.anton.techy.IOS.IosNews;
-import com.example.anton.techy.YCombinatorFirebase.HackerNewsActivity;
+import com.example.anton.techy.WebSiteDesign.WebDesignNews;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -131,9 +131,15 @@ public class RecyclerViewAdapterGrid extends RecyclerView.Adapter<RecyclerViewAd
                     case 2:
                         intent = new Intent(mContext, IosNews.class);
                         break;
+                    case 4:
+                        intent = new Intent(mContext, LinuxNews.class);
+                        break;
+                    case 7:
+                        intent = new Intent(mContext, WebDesignNews.class);
+                        break;
 
                     default:
-                        intent = new Intent(mContext, MainNewsActivity.class);
+                        intent = new Intent(mContext, MainNews.class);
                 }
                 mContext.startActivity(intent);
         }

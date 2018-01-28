@@ -24,8 +24,11 @@
             android:configChanges="orientation|keyboard|screenSize"></activity>
         <activity android:name=".IOS.IosNews"
             android:configChanges="orientation|keyboard|screenSize"></activity>
-        <activity android:name = ".YCombinatorFirebase.HackerNewsActivity"
+        <activity android:name = ".LinuxNews"
             android:configChanges="orientation|keyboard|screenSize"></activity>
+        <activity android:name = ".WebSiteDesign.WebDesignNews"
+            android:configChanges="orientation|keyboard|screenSize"></activity>
+
 
         <activity android:name=".WebViewActivity"></activity>
     </application>

@@ -1,6 +1,5 @@
 package com.example.anton.techy;
 
-import android.app.Fragment;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -12,6 +11,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.anton.techy.UtilsURL.IconListClass;
 
 import java.util.ArrayList;
 import java.util.List;

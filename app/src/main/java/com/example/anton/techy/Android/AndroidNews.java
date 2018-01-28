@@ -9,11 +9,10 @@ import android.widget.Toast;
 
 import com.example.anton.techy.ChannelFeedProcessing.Item;
 import com.example.anton.techy.ChannelFeedProcessing.RssFeed;
-import com.example.anton.techy.IconListClass;
+import com.example.anton.techy.UtilsURL.IconListClass;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
 import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
-import com.example.anton.techy.RecyclerViewAdapterImage;
 import com.example.anton.techy.RecyclerViewAdapterNoImage;
 import com.example.anton.techy.UtilsURL.UrlsList;
 
@@ -32,7 +31,7 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class AndroidNews extends AppCompatActivity{
 
-    private static final String TAG = "MainNewsActivity";
+    private static final String TAG = "MainNews";
 
     private android.support.v7.widget.RecyclerView recyclerView;
     private android.support.v7.widget.RecyclerView.Adapter adapter;
@@ -91,10 +90,6 @@ public class AndroidNews extends AppCompatActivity{
                     ));
 
                 }
-                adapter = new RecyclerViewAdapterNoImage(news, getApplicationContext());
-                recyclerView.setAdapter(adapter);
-
-
             }
 
             @Override

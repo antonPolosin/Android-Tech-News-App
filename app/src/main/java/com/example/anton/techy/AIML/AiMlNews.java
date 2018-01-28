@@ -5,25 +5,23 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.anton.techy.ChannelFeedProcessing.Item;
 import com.example.anton.techy.ChannelFeedProcessing.RssFeed;
-import com.example.anton.techy.FeedFeedProcessing.XmlExtraction;
-import com.example.anton.techy.IconListClass;
+import com.example.anton.techy.UtilsURL.IconListClass;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
-import com.example.anton.techy.InterfaceAPI.FeedGitXivAPI;
 import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
-import com.example.anton.techy.RecyclerViewAdapterImage;
 import com.example.anton.techy.RecyclerViewAdapterNoImage;
 import com.example.anton.techy.UtilsURL.UrlsList;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,8 +40,6 @@ public class AiMlNews extends AppCompatActivity {
     private android.support.v7.widget.RecyclerView recyclerView;
     private android.support.v7.widget.RecyclerView.Adapter adapter;
     private ArrayList<NewsClass> news = new ArrayList<>();
-
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,19 +82,18 @@ public class AiMlNews extends AppCompatActivity {
 
                 //initialise arraylist to add news to the class
                 for (int i = 0; i < mItems.size(); i++) {
-                    news.add(new NewsClass(
-                            mItems.get(i).getTitle(),
-                            mItems.get(i).getPubDate(),
-                            mItems.get(i).getLink(),
-                            null,
-                            IconListClass.getLOGOS().get(3)
-                    ));
 
+                        news.add(new NewsClass(
+                                mItems.get(i).getTitle(),
+                                mItems.get(i).getPubDate(),
+                                mItems.get(i).getLink(),
+                                null,
+                                IconListClass.getLOGOS().get(3)
+                        ));
+//                    adapter = new RecyclerViewAdapterNoImage(news, getApplicationContext());
+//                    recyclerView.setAdapter(adapter);
                 }
-                adapter = new RecyclerViewAdapterNoImage(news, getApplicationContext());
-                recyclerView.setAdapter(adapter);
             }
-
             @Override
             public void onFailure(Call<RssFeed> call, Throwable t) {
                 Log.e(TAG, "onFailure: Unable to retrieve RSS: " + t.getMessage());

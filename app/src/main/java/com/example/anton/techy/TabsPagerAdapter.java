@@ -8,13 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.anton.techy.YCombinatorFirebase.HackerNews;
+
 /**
  * Created by anton on 24/01/18.
  */
 
 public class TabsPagerAdapter extends FragmentPagerAdapter{
 
-    String tabTitles[] = new String[]{"News", "Topics"};
+    String tabTitles[] = new String[]{"News", "Hacker News", "Topics"};
     Context mContext;
 
 
@@ -31,8 +33,10 @@ public class TabsPagerAdapter extends FragmentPagerAdapter{
 
         switch(position){
             case 0:
-                return new MainNewsActivity();
+                return new MainNews();
             case 1:
+                return new HackerNews();
+            case 2:
                 return new MainActivity();
             }
 

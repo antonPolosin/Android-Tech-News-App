@@ -20,6 +20,11 @@ public class UrlsList {
        add("http://www.iphonehacks.com/");
        add("https://www.theverge.com/");
        add("https://techcrunch.com/");
+       add("http://linuxtechlab.com/");
+       add("http://www.topix.com/");
+       add("https://news.ycombinator.com/news/");
+       add("https://css-tricks.com/");
+       add("https://www.noupe.com/");
 
 
     }};
@@ -33,6 +38,11 @@ public class UrlsList {
        add("http://www.iphonehacks.com/feed");
        add("https://www.theverge.com/rss/index.xml");
        add("http://feeds.feedburner.com/TechCrunch/");
+       add("http://feeds.feedburner.com/LnuxTech-lb");
+       add("http://www.topix.com/rss/tech/linux");
+       add("https://news.ycombinator.com/bigrss");
+       add("https://css-tricks.com/feed/");
+       add("https://www.noupe.com/feed");
     }};
 
 

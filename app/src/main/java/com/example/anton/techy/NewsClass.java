@@ -2,7 +2,9 @@ package com.example.anton.techy;
 
 import org.ocpsoft.prettytime.PrettyTime;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -10,12 +12,6 @@ import java.util.Locale;
  */
 
 public class NewsClass {
-
-    PrettyTime p = new PrettyTime(Locale.getDefault());
-
-
-    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
-
 
     private String title;
     private String updated;
@@ -49,6 +45,17 @@ public class NewsClass {
 
     }
 
+    public String formattedDate(String inputDate){
+        PrettyTime p = new PrettyTime(Locale.ENGLISH);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.getDefault());
+        Date d = null;
+        try {
+            d = sdf.parse(inputDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return p.format(d);
+    }
 
     public String getTitle() {
         return title;
@@ -90,3 +97,4 @@ public class NewsClass {
         this.source = source;
     }
 }
+

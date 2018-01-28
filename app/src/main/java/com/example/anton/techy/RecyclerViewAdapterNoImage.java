@@ -2,6 +2,7 @@ package com.example.anton.techy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +28,6 @@ public class RecyclerViewAdapterNoImage extends android.support.v7.widget.Recycl
     private List<NewsClass> newsItems;
     private Context mContext;
     //Setting library for the time elapsed after news were published
-    PrettyTime p = new PrettyTime(Locale.ENGLISH);
-
-
-    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
 
     public RecyclerViewAdapterNoImage(List<NewsClass> newsItems, Context mContext) {
         this.newsItems = newsItems;
@@ -47,20 +44,20 @@ public class RecyclerViewAdapterNoImage extends android.support.v7.widget.Recycl
     }
 
     @Override
+    public int getItemCount() {
+        return newsItems.size();
+    }
+
+    @Override
     public void onBindViewHolder(final RecyclerViewAdapterNoImage.ViewHolder holder, int position) {
-
         final NewsClass newsItem = newsItems.get(position);
+        //processing pubDate tag with SimpleDateFormatter and PrettyTime
+        String formattedDate = newsItem.formattedDate(newsItem.getUpdated());
 
-        holder.date_updated.setText(p.format(new Date(newsItem.getUpdated())));
-
+        holder.date_updated.setText(formattedDate);
         holder.title.setText(newsItem.getTitle());
-
         holder.source.setText(newsItem.getSource());
-//        }catch(Exception j){
-//            j.printStackTrace();
-//        }
-        // Change how the date is displayed depending on whether it was written in the last minute,
-        // the hour, etc.
+
 
 
 
@@ -79,10 +76,7 @@ public class RecyclerViewAdapterNoImage extends android.support.v7.widget.Recycl
 
     }
 
-    @Override
-    public int getItemCount() {
-        return newsItems.size();
-    }
+
 
 
     public class ViewHolder extends android.support.v7.widget.RecyclerView.ViewHolder{

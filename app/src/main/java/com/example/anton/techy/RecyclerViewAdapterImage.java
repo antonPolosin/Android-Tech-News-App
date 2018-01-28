@@ -37,10 +37,6 @@ public class RecyclerViewAdapterImage extends android.support.v7.widget.Recycler
     private List<NewsClass> newsItems;
     private Context mContext;
     //Setting library for the time elapsed after news were published
-    PrettyTime p = new PrettyTime(Locale.ENGLISH);
-
-
-    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
 
     public RecyclerViewAdapterImage(List<NewsClass> newsItems, Context mContext) {
         this.newsItems = newsItems;
@@ -65,26 +61,16 @@ public class RecyclerViewAdapterImage extends android.support.v7.widget.Recycler
     public void onBindViewHolder(final RecyclerViewAdapterImage.ViewHolder holder, int position) {
         setupImageLoader();
 
-
         final NewsClass newsItem = newsItems.get(position);
         String imgUrl = newsItem.getNewsImage();
+        //processing pubDate tag with SimpleDateFormatter and PrettyTime
+        String formattedDate = newsItem.formattedDate(newsItem.getUpdated());
 
-//        try {
-//            Date date = new Date(sdf.parse(newsItem.getUpdated()));
-//            holder.date_updated.setText(p.format(new Date(newsItem.getUpdated())));
-            holder.date_updated.setText(newsItem.getUpdated());
+            holder.date_updated.setText(formattedDate);
             holder.title.setText(newsItem.getTitle());
             holder.source.setText(newsItem.getSource());
-//        }catch(Exception j){
-//            j.printStackTrace();
-//        }
-        // Change how the date is displayed depending on whether it was written in the last minute,
-        // the hour, etc.
 
-
-
-
-//        Setup onItemClick Listener
+//          link to WebView Activity
             holder.mRelativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

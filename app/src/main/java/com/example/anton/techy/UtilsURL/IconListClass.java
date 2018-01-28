@@ -1,4 +1,6 @@
-package com.example.anton.techy;
+package com.example.anton.techy.UtilsURL;
+
+import com.example.anton.techy.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,11 @@ public class IconListClass {
             add("Android Authority");
             add("TechManik");
             add("iPhone Hacks");
+            add("LinuxTechLab");
+            add("Topix");
+            add("Y Combinator");
+            add("CSS-Tricks");
+            add("noupe");
 
 
     }};
@@ -32,7 +39,6 @@ public class IconListClass {
             add("drawable://" + R.drawable.gaming_images);
             add("drawable://" + R.drawable.linux_images);
             add("drawable://" + R.drawable.microsoft_images);
-            add("drawable://" + R.drawable.reddit_images);
             add("drawable://" + R.drawable.reddit_images);
             add("drawable://" + R.drawable.website_design_images);
     }};
