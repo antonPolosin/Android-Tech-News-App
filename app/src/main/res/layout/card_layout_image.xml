@@ -71,12 +71,12 @@
                 android:text="updated"
                 android:textSize="10sp" />
 
-            <ProgressBar
-                android:id="@+id/cardProgressDialog"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true" />
+            <!--<ProgressBar-->
+                <!--android:id="@+id/cardProgressDialog"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_centerVertical="true" />-->
 
 
         </RelativeLayout>

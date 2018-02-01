@@ -1,4 +1,4 @@
-package com.example.anton.techy.ChannelFeedProcessing;
+package com.example.anton.techy.Model.ChannelFeedModel;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;

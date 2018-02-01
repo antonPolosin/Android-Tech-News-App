@@ -2,29 +2,17 @@ package com.example.anton.techy;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import org.ocpsoft.prettytime.PrettyTime;
-
-import java.text.SimpleDateFormat;
+import com.bumptech.glide.Glide;
 import java.util.List;
-import java.util.Locale;
+
 
 /**
  * Created by anton on 23/12/17.
@@ -41,7 +29,7 @@ public class RecyclerViewAdapterImage extends android.support.v7.widget.Recycler
     public RecyclerViewAdapterImage(List<NewsClass> newsItems, Context mContext) {
         this.newsItems = newsItems;
         this.mContext = mContext;
-        setupImageLoader();
+//           setupImageLoader();
     }
 
     @Override
@@ -59,7 +47,7 @@ public class RecyclerViewAdapterImage extends android.support.v7.widget.Recycler
 
     @Override
     public void onBindViewHolder(final RecyclerViewAdapterImage.ViewHolder holder, int position) {
-        setupImageLoader();
+//        setupImageLoader();
 
         final NewsClass newsItem = newsItems.get(position);
         String imgUrl = newsItem.getNewsImage();
@@ -69,6 +57,8 @@ public class RecyclerViewAdapterImage extends android.support.v7.widget.Recycler
             holder.date_updated.setText(formattedDate);
             holder.title.setText(newsItem.getTitle());
             holder.source.setText(newsItem.getSource());
+
+        Glide.with(mContext).asBitmap().load(imgUrl).into(holder.newsImage);
 
 //          link to WebView Activity
             holder.mRelativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -81,50 +71,12 @@ public class RecyclerViewAdapterImage extends android.support.v7.widget.Recycler
                 }
             });
 
-
-            //create the imageloader object
-            ImageLoader imageLoader = ImageLoader.getInstance();
-
-            int defaultImage = mContext.getResources().getIdentifier("@drawable/image_failed", null, mContext.getPackageName());
-
-            //create display options
-            DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
-                    .cacheOnDisc(true).resetViewBeforeLoading(true)
-                    .showImageForEmptyUri(defaultImage)
-                    .showImageOnFail(defaultImage)
-                    .showImageOnLoading(defaultImage).build();
-
-            //download and display image from url
-            imageLoader.displayImage(imgUrl, holder.newsImage, options, new ImageLoadingListener() {
-                @Override
-                public void onLoadingStarted(String imageUri, View view) {
-                    holder.mProgressBar.setVisibility(View.VISIBLE);
-                }
-
-                @Override
-                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    holder.mProgressBar.setVisibility(View.GONE);
-                }
-
-                @Override
-                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    holder.mProgressBar.setVisibility(View.GONE);
-                }
-
-                @Override
-                public void onLoadingCancelled(String imageUri, View view) {
-                    holder.mProgressBar.setVisibility(View.GONE);
-                }
-
-            });
-
     }
 
     public class ViewHolder extends android.support.v7.widget.RecyclerView.ViewHolder{
 
         TextView title;
         TextView date_updated;
-        ProgressBar mProgressBar;
         ImageView newsImage;
         TextView source;
         public RelativeLayout mRelativeLayout;
@@ -136,28 +88,8 @@ public class RecyclerViewAdapterImage extends android.support.v7.widget.Recycler
             date_updated = itemView.findViewById(R.id.cardUpdated);
             newsImage = itemView.findViewById(R.id.cardImage);
             source = itemView.findViewById(R.id.cardAuthor);
-            mProgressBar = itemView.findViewById(R.id.cardProgressDialog);
             mRelativeLayout = itemView.findViewById(R.id.relative_layout);
         }
     }
 
-    /**
-     * Required for setting up the Universal Image loader Library
-     */
-    private void setupImageLoader(){
-        // UNIVERSAL IMAGE LOADER SETUP
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                .cacheOnDisc(true).cacheInMemory(true)
-                .imageScaleType(ImageScaleType.EXACTLY)
-                .displayer(new FadeInBitmapDisplayer(300)).build();
-
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
-                mContext)
-                .defaultDisplayImageOptions(defaultOptions)
-                .memoryCache(new WeakMemoryCache())
-                .discCacheSize(100 * 1024 * 1024).build();
-
-        ImageLoader.getInstance().init(config);
-        // END - UNIVERSAL IMAGE LOADER SETUP
-    }
 }

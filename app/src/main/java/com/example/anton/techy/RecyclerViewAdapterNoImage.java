@@ -93,7 +93,6 @@ public class RecyclerViewAdapterNoImage extends android.support.v7.widget.Recycl
             title = (TextView) itemView.findViewById(R.id.cardTitleNoImage);
             date_updated = (TextView) itemView.findViewById(R.id.cardUpdatedNoImage);
             source = (TextView) itemView.findViewById(R.id.cardAuthorNoImage);
-            mProgressBar = (ProgressBar) itemView.findViewById(R.id.cardProgressDialogNoImage);
             mRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.relative_layout_no_image);
         }
     }

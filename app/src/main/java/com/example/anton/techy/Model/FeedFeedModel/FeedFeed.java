@@ -1,4 +1,6 @@
-package com.example.anton.techy.FeedFeedProcessing;
+package com.example.anton.techy.Model.FeedFeedModel;
+
+import com.example.anton.techy.Model.FeedFeedModel.Entry;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;

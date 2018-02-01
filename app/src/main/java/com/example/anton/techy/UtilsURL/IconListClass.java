@@ -13,7 +13,7 @@ import java.util.List;
 
 public class IconListClass {
 
-    private static final List<String> LOGOS = new ArrayList<String>(){{
+    private static final ArrayList<String> LOGOS = new ArrayList<String>(){{
             add("TechCrunch");
             add("The Verge");
             add("Hacker News");
@@ -32,7 +32,7 @@ public class IconListClass {
 
     }};
 
-    private static final List<String> ICONS = new ArrayList<String>(){{
+    private static final ArrayList<String> ICONS = new ArrayList<String>(){{
             add("drawable://" + R.drawable.ai_images);
             add("drawable://" + R.drawable.android_images);
             add("drawable://" + R.drawable.apple_images);

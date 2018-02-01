@@ -1,24 +1,20 @@
-package com.example.anton.techy.YCombinatorFirebase;
+package com.example.anton.techy;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.anton.techy.ChannelFeedProcessing.Item;
-import com.example.anton.techy.ChannelFeedProcessing.RssFeed;
+import com.example.anton.techy.Model.ChannelFeedModel.Item;
+import com.example.anton.techy.Model.ChannelFeedModel.RssFeed;
 import com.example.anton.techy.UtilsURL.IconListClass;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
 import com.example.anton.techy.NewsClass;
 import com.example.anton.techy.R;
 import com.example.anton.techy.RecyclerViewAdapterNoImage;
-import com.example.anton.techy.UtilsURL.URLS;
 import com.example.anton.techy.UtilsURL.UrlsList;
 
 import java.util.ArrayList;

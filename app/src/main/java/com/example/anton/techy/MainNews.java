@@ -8,14 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.anton.techy.ChannelFeedProcessing.Item;
-import com.example.anton.techy.ChannelFeedProcessing.RssFeed;
-import com.example.anton.techy.FeedFeedProcessing.XmlExtraction;
+import com.example.anton.techy.Model.ChannelFeedModel.Item;
+import com.example.anton.techy.Model.ChannelFeedModel.RssFeed;
+import com.example.anton.techy.Model.FeedFeedModel.XmlExtraction;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
-import com.example.anton.techy.UtilsURL.IconListClass;
 import com.example.anton.techy.UtilsURL.UrlsList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,7 +36,6 @@ public class MainNews extends android.support.v4.app.Fragment {
     private android.support.v7.widget.RecyclerView.Adapter adapter;
     private ArrayList<NewsClass> news = new ArrayList();
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -50,47 +49,6 @@ public class MainNews extends android.support.v4.app.Fragment {
     }
 
     private void init() {
-//        //initialising retrofit
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(UrlsList.getBaseUrlsList().get(6))
-//                //converter XML
-//                .addConverterFactory(SimpleXmlConverterFactory.create())
-//                .build();
-//
-//        FeedFeedAPI feed = retrofit.create(FeedFeedAPI.class);
-//
-//        Call<FeedFeed> call = feed.getFeed(UrlsList.getRssUrlsList().get(6));
-//
-//
-//        //starting callbacks
-//        call.enqueue(new Callback<FeedFeed>() {
-//            @Override
-//            public void onResponse(Call<FeedFeed> call, Response<FeedFeed> response) {
-//                List<Entry> entries = response.body().getEntries();
-//                //getting icon from the header of the rss feed
-//                for (int i = 0; i < entries.size(); i++) {
-//                    //Extracting image from the verge feed
-//                    XmlExtraction extractVerge = new XmlExtraction(entries.get(i).getContent(), "img alt=\"\" src=");
-//                    List<String> postContent = extractVerge.start();
-//
-//                    //adding news to the arrayList
-//                    news.add(new NewsClass(
-//                            entries.get(i).getTitle(),
-//                            entries.get(i).getUpdated(),
-//                            entries.get(i).getId(),
-//                            postContent.get(0),
-//                            IconListClass.getLOGOS().get(1)
-//                    ));
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<FeedFeed> call, Throwable t) {
-//                Log.e(TAG, "onFailure: Unable to retrieve RSS: " + t.getMessage());
-//
-//            }
-//        });
-
         //initialising retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(UrlsList.getBaseUrlsList().get(7))
@@ -98,12 +56,12 @@ public class MainNews extends android.support.v4.app.Fragment {
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
 
-        FeedChannelAPI feed_2 = retrofit.create(FeedChannelAPI.class);
+        FeedChannelAPI feed = retrofit.create(FeedChannelAPI.class);
 
-        Call<RssFeed> call_2 = feed_2.getFeed(UrlsList.getRssUrlsList().get(7));
+        Call<RssFeed> call = feed.getFeed(UrlsList.getRssUrlsList().get(7));
 
         //starting callbacks
-        call_2.enqueue(new Callback<RssFeed>() {
+        call.enqueue(new Callback<RssFeed>() {
             @Override
             public void onResponse(Call<RssFeed> call, Response<RssFeed> response) {
                 Log.d(TAG, "onResponse: feed: " + response.body().toString());
@@ -121,10 +79,102 @@ public class MainNews extends android.support.v4.app.Fragment {
                             mItems.get(i).getPubDate(),
                             mItems.get(i).getLink(),
                             postContent.get(0),
-                            IconListClass.getLOGOS().get(0)
+                            response.body().getmChannel().getTitle()
+
                     ));
 
                 }
+
+            }
+
+            @Override
+            public void onFailure(Call<RssFeed> call, Throwable t) {
+                Log.e(TAG, "onFailure: Unable to retrieve RSS: " + t.getMessage());
+
+            }
+
+        });
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(UrlsList.getBaseUrlsList().get(14))
+                //converter XML
+                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .build();
+
+        feed = retrofit.create(FeedChannelAPI.class);
+
+        call = feed.getFeed(UrlsList.getRssUrlsList().get(14));
+
+        //starting callbacks
+        call.enqueue(new Callback<RssFeed>() {
+            @Override
+            public void onResponse(Call<RssFeed> call, Response<RssFeed> response) {
+                Log.d(TAG, "onResponse: feed: " + response.body().toString());
+
+                List<Item> mItems = response.body().getmChannel().getItems();
+
+                Log.d(TAG, "onResponse: Server Response: " + response.toString());
+
+                //initialise arraylist to add news to the class
+                for (int i = 0; i < mItems.size(); i++) {
+                    XmlExtraction extractVerge = new XmlExtraction(mItems.get(i).getDescription(), "src=");
+                    List<String> postContent = extractVerge.start();
+                    news.add(new NewsClass(
+                            mItems.get(i).getTitle(),
+                            mItems.get(i).getPubDate(),
+                            mItems.get(i).getLink(),
+                            postContent.get(0),
+                            response.body().getmChannel().getTitle()
+
+                    ));
+
+                }
+//                adapter = new RecyclerViewAdapterImage(news, getActivity());
+//                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<RssFeed> call, Throwable t) {
+                Log.e(TAG, "onFailure: Unable to retrieve RSS: " + t.getMessage());
+
+            }
+
+        });
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(UrlsList.getBaseUrlsList().get(15))
+                //converter XML
+                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .build();
+
+        feed = retrofit.create(FeedChannelAPI.class);
+
+        call = feed.getFeed(UrlsList.getRssUrlsList().get(15));
+
+        //starting callbacks
+        call.enqueue(new Callback<RssFeed>() {
+            @Override
+            public void onResponse(Call<RssFeed> call, Response<RssFeed> response) {
+                Log.d(TAG, "onResponse: feed: " + response.body().toString());
+
+                List<Item> mItems = response.body().getmChannel().getItems();
+
+                Log.d(TAG, "onResponse: Server Response: " + response.toString());
+
+                //initialise arraylist to add news to the class
+                for (int i = 0; i < mItems.size(); i++) {
+                    XmlExtraction extractVerge = new XmlExtraction(mItems.get(i).getDescription(), "img src=");
+                    List<String> postContent = extractVerge.start();
+                    news.add(new NewsClass(
+                            mItems.get(i).getTitle(),
+                            mItems.get(i).getPubDate(),
+                            mItems.get(i).getLink(),
+                            postContent.get(0),
+                            response.body().getmChannel().getTitle()
+
+                    ));
+                }
+//
                 adapter = new RecyclerViewAdapterImage(news, getActivity());
                 recyclerView.setAdapter(adapter);
             }

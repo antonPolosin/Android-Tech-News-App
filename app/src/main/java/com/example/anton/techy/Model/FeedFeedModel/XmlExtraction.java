@@ -1,4 +1,4 @@
-package com.example.anton.techy.FeedFeedProcessing;
+package com.example.anton.techy.Model.FeedFeedModel;
 
 import android.util.Log;
 

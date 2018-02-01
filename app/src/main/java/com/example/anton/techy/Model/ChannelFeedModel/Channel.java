@@ -1,5 +1,6 @@
-package com.example.anton.techy.ChannelFeedProcessing;
+package com.example.anton.techy.Model.ChannelFeedModel;
 
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -13,7 +14,8 @@ import java.util.List;
 
 public class Channel implements Serializable{
 
-
+    @Element(name = "title")
+    private String title;
     @ElementList(inline = true, name = "item")
     public List<Item> items;
 
@@ -26,6 +28,10 @@ public class Channel implements Serializable{
 
     public List<Item> getItems() {
         return items;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     @Override

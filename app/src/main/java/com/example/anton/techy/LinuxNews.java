@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 
-import com.example.anton.techy.ChannelFeedProcessing.Item;
-import com.example.anton.techy.ChannelFeedProcessing.RssFeed;
+import com.example.anton.techy.Model.ChannelFeedModel.Item;
+import com.example.anton.techy.Model.ChannelFeedModel.RssFeed;
 import com.example.anton.techy.InterfaceAPI.FeedChannelAPI;
 import com.example.anton.techy.UtilsURL.IconListClass;
 import com.example.anton.techy.UtilsURL.UrlsList;

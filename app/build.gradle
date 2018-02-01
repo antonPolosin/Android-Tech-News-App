@@ -21,6 +21,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
@@ -52,8 +53,11 @@ dependencies {
     compile 'com.google.firebase:firebase-core:11.8.0'
 //  PrettyTime
     compile 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
-
-
+//    Glide
+    implementation 'com.github.bumptech.glide:glide:4.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+////    Glide RecylclerView integration
+//    compile 'com.github.bumptech.glide:recyclerview-integration:4.5.0'
 
 
 }

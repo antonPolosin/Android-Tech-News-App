@@ -1,6 +1,6 @@
 package com.example.anton.techy.InterfaceAPI;
 
-import com.example.anton.techy.FeedFeedProcessing.FeedFeed;
+import com.example.anton.techy.Model.FeedFeedModel.FeedFeed;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

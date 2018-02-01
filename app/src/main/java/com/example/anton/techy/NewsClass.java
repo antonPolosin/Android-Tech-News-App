@@ -1,5 +1,7 @@
 package com.example.anton.techy;
 
+import android.support.annotation.NonNull;
+
 import org.ocpsoft.prettytime.PrettyTime;
 
 import java.text.ParseException;
@@ -11,7 +13,7 @@ import java.util.Locale;
  * Created by anton on 9/12/17.
  */
 
-public class NewsClass {
+public class NewsClass{
 
     private String title;
     private String updated;
@@ -57,6 +59,8 @@ public class NewsClass {
         return p.format(d);
     }
 
+
+
     public String getTitle() {
         return title;
     }
@@ -96,5 +100,6 @@ public class NewsClass {
     public void setSource(String source) {
         this.source = source;
     }
+
 }
 

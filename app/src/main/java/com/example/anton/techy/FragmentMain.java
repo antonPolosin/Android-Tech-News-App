@@ -22,10 +22,6 @@ public class FragmentMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main_activity);
-
-
-
-
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         TabsPagerAdapter pagerAdapter = new TabsPagerAdapter(getSupportFragmentManager(), FragmentMain.this);
         viewPager.setAdapter(pagerAdapter);

@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.anton.techy.YCombinatorFirebase.HackerNews;
-
 /**
  * Created by anton on 24/01/18.
  */

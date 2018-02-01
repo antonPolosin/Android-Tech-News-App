@@ -25,6 +25,10 @@ public class UrlsList {
        add("https://news.ycombinator.com/news/");
        add("https://css-tricks.com/");
        add("https://www.noupe.com/");
+       add("https://www.anandtech.com/");
+       add("http://www.redmondpie.com/");
+       add("https://thenextweb.com/au/");
+
 
 
     }};
@@ -43,9 +47,22 @@ public class UrlsList {
        add("https://news.ycombinator.com/bigrss");
        add("https://css-tricks.com/feed/");
        add("https://www.noupe.com/feed");
+       add("https://www.anandtech.com/rss/");
+       add("http://feeds.feedburner.com/RedmondPie");
+       add("http://feeds2.feedburner.com/thenextweb");
+
+    }};
+    private static final List<String> AI_NEWS = new ArrayList<String>(){{
+        add("https://deepmind.com/");
+        add("http://www.gitxiv.com/");
     }};
 
 
+
+
+    public static List<String> getAiNews() {
+        return AI_NEWS;
+    }
 
     public static List<String> getBaseUrlsList() {
         return BASE_URLS_LIST;
@@ -54,4 +71,6 @@ public class UrlsList {
     public static List<String> getRssUrlsList() {
         return RSS_URLS_LIST;
     }
+
+
 }
