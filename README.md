@@ -1,5 +1,9 @@
-Android RSS Tech News Reader
+Android RSS Tech News Reade
 
-Include Hacker News (https://news.ycombinator.com/), some of the main tech news providers (TechCrunch, ArsTechnica, The Verge) and couple of subredits
+RSS reader app. Include multiple tech news resources such as https://techcrunch.com/, https://thenextweb.com/section/tech/ and https://news.ycombinator.com/.
 
-Used retrofit2 library to consume RSS feeds, simple image loader for image loading.
+Used Retrofit2 (https://github.com/square/retrofit) to consume and process RSS feeds.
+
+Used Glide (https://github.com/bumptech/glide) for image loading.
+
+
