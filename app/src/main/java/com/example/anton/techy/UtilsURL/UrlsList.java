@@ -28,9 +28,6 @@ public class UrlsList {
        add("https://www.anandtech.com/");
        add("http://www.redmondpie.com/");
        add("https://thenextweb.com/au/");
-
-
-
     }};
 
     private static final List<String> RSS_URLS_LIST = new ArrayList<String>(){{
@@ -54,11 +51,45 @@ public class UrlsList {
     }};
     private static final List<String> AI_NEWS = new ArrayList<String>(){{
         add("https://deepmind.com/");
+        add("https://deepmind.com/blog/feed/basic/");
         add("http://www.gitxiv.com/");
+        add("http://www.gitxiv.com/feed.xml");
+
     }};
 
 
+    static private final List<String> GAMING_NEWS = new ArrayList<String>(){{
+        add("http://nichegamer.com/");
+        add("http://feeds.feedburner.com/nichegamer");
+        add("https://www.gamewatcher.com/");
+        add("https://www.gamewatcher.com/feeds/rss");
+    }};
 
+    static private final List<String> CRYPTOCURRENCY_NEWS = new ArrayList<String>(){{
+        add("https://www.newsbtc.com/");
+        add("https://www.newsbtc.com/feed/");
+        add("https://cointelegraph.com/");
+        add("https://cointelegraph.com/rss");
+        add("https://coinjournal.net/");
+        add("http://feeds.feedburner.com/coinjournal");
+    }};
+
+    static private final List<String> SCIENCE_NEWS = new ArrayList<String>(){{
+        add("https://www.sciencedaily.com/");
+        add("https://www.sciencedaily.com/rss/all.xml");
+        add("http://discovermagazine.com/");
+        add("http://feeds.feedburner.com/AllDiscovermagazinecomContent");
+    }};
+
+    static private final List<String> MICROSOFT_NEWS = new ArrayList<String>(){{
+        add("https://www.windowscentral.com/");
+        add("http://feeds.windowscentral.com/wmexperts");
+    }};
+
+
+    public static List<String> getMicrosoftNews() {
+        return MICROSOFT_NEWS;
+    }
 
     public static List<String> getAiNews() {
         return AI_NEWS;
@@ -72,5 +103,15 @@ public class UrlsList {
         return RSS_URLS_LIST;
     }
 
+    public static List<String> getGamingNews() {
+        return GAMING_NEWS;
+    }
 
+    public static List<String> getCryptocurrencyNews() {
+        return CRYPTOCURRENCY_NEWS;
+    }
+
+    public static List<String> getScienceNews() {
+        return SCIENCE_NEWS;
+    }
 }

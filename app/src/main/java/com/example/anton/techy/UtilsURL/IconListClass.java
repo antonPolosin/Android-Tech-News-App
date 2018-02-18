@@ -33,19 +33,14 @@ public class IconListClass {
     }};
 
     private static final ArrayList<String> ICONS = new ArrayList<String>(){{
-            add("drawable://" + R.drawable.ai_images);
+            add("drawable://" + R.drawable.aiml);
             add("drawable://" + R.drawable.android_images);
             add("drawable://" + R.drawable.apple_images);
             add("drawable://" + R.drawable.gaming_images);
             add("drawable://" + R.drawable.linux_images);
             add("drawable://" + R.drawable.microsoft_images);
-            add("drawable://" + R.drawable.reddit_images);
-            add("drawable://" + R.drawable.website_design_images);
-    }};
-
-    private static final List<String> ALL = new ArrayList<String>(){{
-            addAll(LOGOS);
-            addAll(ICONS);
+            add("drawable://" + R.drawable.cryptocurrency_images);
+            add("drawable://" + R.drawable.science);
     }};
 
 
@@ -56,10 +51,5 @@ public class IconListClass {
     public static List<String> getIcons() {
         return ICONS;
     }
-
-    public static List<String> getAll() {
-        return ALL;
-    }
-
 
 }

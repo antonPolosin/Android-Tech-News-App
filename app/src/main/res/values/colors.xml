@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Primary color of the app (shown in the app bar) -->
-    <color name="colorPrimary">#2B3D4D</color>
+    <color name="colorPrimary">#D59708</color>
 
     <!-- Primary dark color of the app (shown in the status bar) -->
     <color name="colorPrimaryDark">#23303D</color>
 
     <!-- Accent color of the app -->
     <color name="colorAccent">#10CAC9</color>
+    <color name="tab">#2a2a2a</color>>
+    <color name="imageTinting">#6F000000</color>>
     <color name="headlineColor">#000000</color>>
     <color name="gridTextColor">#ffffff</color>
     <color name="viewBg">#f1f5f8</color>
     <color name="album_title">#4c4c4c</color>
+
 </resources>
 

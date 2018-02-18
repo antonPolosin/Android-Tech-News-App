@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FragmentMain"
+        <activity android:name=".MainFragment"
             android:configChanges="orientation|keyboard|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,15 +18,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AIML.AiMlNews"
+        <activity android:name=".NewsController.AiMlNews"
             android:configChanges="orientation|keyboard|screenSize"></activity>
-        <activity android:name=".Android.AndroidNews"
+        <activity android:name=".NewsController.AndroidNews"
             android:configChanges="orientation|keyboard|screenSize"></activity>
-        <activity android:name=".IOS.IosNews"
+        <activity android:name=".NewsController.IosNews"
             android:configChanges="orientation|keyboard|screenSize"></activity>
-        <activity android:name = ".LinuxNews"
+        <activity android:name = ".NewsController.LinuxNews"
             android:configChanges="orientation|keyboard|screenSize"></activity>
-        <activity android:name = ".WebSiteDesign.WebDesignNews"
+        <activity android:name = ".NewsController.WebDesignNews"
+            android:configChanges="orientation|keyboard|screenSize"></activity>
+        <activity android:name = ".NewsController.GamingNews"
+            android:configChanges="orientation|keyboard|screenSize"></activity>
+        <activity android:name = ".NewsController.CryptocurrencyNews"
+            android:configChanges="orientation|keyboard|screenSize"></activity>
+        <activity android:name = ".NewsController.ScienceNews"
+            android:configChanges="orientation|keyboard|screenSize"></activity>
+        <activity android:name = ".NewsController.MicrosoftNews"
             android:configChanges="orientation|keyboard|screenSize"></activity>
 
 

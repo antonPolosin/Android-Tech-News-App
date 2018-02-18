@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -16,9 +15,15 @@
         card_view:cardCornerRadius="@dimen/card_album_radius">
 
         <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <RelativeLayout
             android:id="@+id/relative_layout_grid"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:foreground="@color/imageTinting">
+
 
             <ImageView
                 android:id="@+id/thumbnailGrid"
@@ -26,17 +31,6 @@
                 android:layout_height="@dimen/album_cover_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="centerCrop" />
-
-            <TextView
-                android:id="@+id/titleGrid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/thumbnailGrid"
-                android:paddingLeft="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
-                android:paddingTop="@dimen/album_title_padding"
-                android:textColor="@color/album_title"
-                android:textSize="@dimen/album_title" />
 
             <ProgressBar
                 android:id="@+id/cardProgressDialogGrid"
@@ -46,6 +40,20 @@
                 android:layout_centerVertical="true" />
 
         </RelativeLayout>
+
+            <TextView
+                android:id="@+id/titleGrid"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:includeFontPadding="false"
+                android:gravity="center"
+                android:textColor="@color/gridTextColor"
+                android:fontFamily="sans-serif-black"
+                android:textSize="20sp" />
+
+    </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 
