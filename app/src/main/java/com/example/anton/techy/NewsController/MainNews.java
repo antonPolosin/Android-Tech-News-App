@@ -53,14 +53,14 @@ public class MainNews extends android.support.v4.app.Fragment {
     private void init() {
         //initialising retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(UrlsList.getBaseUrlsList().get(7))
+                .baseUrl(UrlsList.getBaseUrlsList().get(14))
                 //converter XML
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
 
         FeedChannelAPI feed = retrofit.create(FeedChannelAPI.class);
 
-        Call<RssFeed> call = feed.getFeed(UrlsList.getRssUrlsList().get(7));
+        Call<RssFeed> call = feed.getFeed(UrlsList.getRssUrlsList().get(14));
 
         //starting callbacks
         call.enqueue(new Callback<RssFeed>() {
@@ -97,51 +97,6 @@ public class MainNews extends android.support.v4.app.Fragment {
 
         });
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(UrlsList.getBaseUrlsList().get(14))
-                //converter XML
-                .addConverterFactory(SimpleXmlConverterFactory.create())
-                .build();
-
-        feed = retrofit.create(FeedChannelAPI.class);
-
-        call = feed.getFeed(UrlsList.getRssUrlsList().get(14));
-
-        //starting callbacks
-        call.enqueue(new Callback<RssFeed>() {
-            @Override
-            public void onResponse(Call<RssFeed> call, Response<RssFeed> response) {
-                Log.d(TAG, "onResponse: feed: " + response.body().toString());
-
-                List<Item> mItems = response.body().getmChannel().getItems();
-
-                Log.d(TAG, "onResponse: Server Response: " + response.toString());
-
-                //initialise arraylist to add news to the class
-                for (int i = 0; i < mItems.size(); i++) {
-                    XmlExtraction extractVerge = new XmlExtraction(mItems.get(i).getDescription(), "src=");
-                    List<String> postContent = extractVerge.start();
-                    news.add(new NewsClass(
-                            mItems.get(i).getTitle(),
-                            mItems.get(i).getPubDate(),
-                            mItems.get(i).getLink(),
-                            postContent.get(0),
-                            response.body().getmChannel().getTitle()
-
-                    ));
-
-                }
-//                adapter = new RecyclerViewAdapterImage(news, getActivity());
-//                recyclerView.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Call<RssFeed> call, Throwable t) {
-                Log.e(TAG, "onFailure: Unable to retrieve RSS: " + t.getMessage());
-
-            }
-
-        });
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(UrlsList.getBaseUrlsList().get(15))
